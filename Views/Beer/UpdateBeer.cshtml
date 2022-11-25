@@ -1,0 +1,51 @@
+﻿@model BeerShop.ViewModels.BeerCreateViewModel
+<form asp-action="UpdateBeerAction" method="post" role="form" enctype="multipart/form-data">
+    <h3 class="my-5">
+        Add a new beer to the list
+    </h3>
+
+    <div class="col-6">
+        <div class="row g-2">
+            <div class="col-12">
+                <label asp-for="Beer.Id" class="form-label"></label>
+                <input asp-for="Beer.Id" readonly=true  />
+            </div>
+            <div class="col-12">
+                <label asp-for="Beer.Name" class="form-label"></label>
+                <input asp-for="Beer.Name" class="form-control"/>
+            </div>
+            <div class="col-12">
+                <label asp-for="Beer.Description" class="form-label"></label>
+                <input asp-for="Beer.Description" type="textarea" class="form-control" />
+            </div>
+            <div class="col-12">
+                <label asp-for="Beer.Price" class="form-label"></label>
+                <input asp-for="Beer.Price" class="form-control" />
+            </div>
+            <div class="col-12">
+                <label asp-for="Beer.ImageUrl" class="form-label"></label>
+                <input asp-for="Beer.ImageUrl" class="form-control" />
+            </div>
+            <div class="col-12">
+                <select asp-for="Beer.CategoryId" asp-items="@(new SelectList(Model.Categories, nameof(Category.CategoryId), nameof(Category.Name)))" class="form-label">
+                    <option>Please select one</option>
+                </select>
+            </div>
+            <div class="col-12">
+                <label asp-for="Beer.IsSponsoredBeer" class="form-label"></label>
+                <input asp-for="Beer.IsSponsoredBeer" type="checkbox" />
+            </div>
+            <div class="col-12">
+                <label asp-for="Beer.InStock" class="form-label"></label>
+                <input asp-for="Beer.InStock" type="checkbox" />
+            </div>
+
+
+        </div>
+        <div class="mt-2">
+            <div class="col-md-offset-2 col-md-5">
+                <input type="submit" class="btn btn-secondary" value="Update" />
+            </div>
+        </div>
+    </div>
+</form>

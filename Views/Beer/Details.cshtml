@@ -1,0 +1,33 @@
+﻿@model BeerShop.ViewModels.DetailViewModel
+@{
+    var imagePath = Model.Beer.ImageUrl ;
+
+}
+<h3 class="my-5">
+    @Model.Beer.Name
+</h3>
+
+<div class="row gx-5">
+    <img src="~/@imagePath" alt="@Model.Beer.Name" class="img-fluid col-5"/>
+    <div class="col-7">
+        <h4>@Model.Beer.Description</h4>
+        <h3 class="pull-right">@Model.Beer.Price.ToString("c")</h3>
+        @if (Model.Beer.InStock)
+        {
+            <div class="addToCart">
+                <p>Disponible</p>
+                <button class="btb btn-secondary">
+                    ¡Pide tu cerveza ya!
+                </button>
+            </div>
+        }
+        else
+        {
+            <p>Esta cerveza no se encuentra disponible</p>
+        }
+        <br/>
+        <a asp-controller="Beer" asp-action="DeleteBeer" asp-route-id=@Model.Beer.Id ><button class="btn btn-danger" >Eliminar esta cerveza</button></a>
+        <br />
+        <a asp-controller="Beer" asp-action="UpdateBeer" asp-route-id=@Model.Beer.Id><button class="btn btn-light">Actualiza esta cerveza</button></a>
+    </div>
+</div>
