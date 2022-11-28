@@ -1,4 +1,7 @@
-﻿@model BeerShop.ViewModels.DetailViewModel
+﻿@using Microsoft.AspNetCore.Identity
+@model BeerShop.ViewModels.DetailViewModel
+
+@inject SignInManager<IdentityUser> SignInManager
 @{
     var imagePath = Model.Beer.ImageUrl ;
 
@@ -25,9 +28,15 @@
         {
             <p>Esta cerveza no se encuentra disponible</p>
         }
-        <br/>
-        <a asp-controller="Beer" asp-action="DeleteBeer" asp-route-id=@Model.Beer.Id ><button class="btn btn-danger" >Eliminar esta cerveza</button></a>
-        <br />
-        <a asp-controller="Beer" asp-action="UpdateBeer" asp-route-id=@Model.Beer.Id><button class="btn btn-light">Actualiza esta cerveza</button></a>
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <br/>
+            <a asp-controller="Beer" asp-action="DeleteBeer" asp-route-id=@Model.Beer.Id ><button class="btn btn-danger" >Eliminar esta cerveza</button></a>
+            <br />
+            <a asp-controller="Beer" asp-action="UpdateBeer" asp-route-id=@Model.Beer.Id><button class="btn btn-light">Actualiza esta cerveza</button></a>
+        }else{
+            <p>Para actualizar o eliminar un producto debes <a id="login" asp-area="Identity" asp-page="/Account/Login">hacer login</a></p>
+            <p> Si no tienes una cuenta, puedes <a id="register" asp-area="Identity" asp-page="/Account/Register">registrarte aquí</a></p>
+        }
     </div>
 </div>

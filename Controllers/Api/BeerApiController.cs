@@ -8,12 +8,12 @@ namespace BeerShop.Controllers.Api
 {
     [Route("api/beers")]
     [ApiController]
-    public class SearchController : ControllerBase
+    public class BeerApiController : ControllerBase
     {
         private readonly IBeerRepository _beerRepository;
         
 
-        public SearchController(IBeerRepository beerRepository)
+        public BeerApiController(IBeerRepository beerRepository)
         {
             _beerRepository = beerRepository;
             
@@ -95,6 +95,8 @@ namespace BeerShop.Controllers.Api
             }
 
         }
+     
+
 
 
 

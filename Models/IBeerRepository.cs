@@ -16,5 +16,7 @@
         Beer DeleteBeer(int id);
 
         Beer UpdateBeer(Beer beer);
+
+        IEnumerable<Beer> SearchBeers(string searchQuery);
     }
 }

@@ -85,6 +85,19 @@ namespace BeerShop.Controllers
             }
             return  RedirectToAction("UpdateBeer");
         }
+        [HttpGet]
+        public IActionResult SearchBeers(string? searchString)
+        {
+            IEnumerable<Beer> beers = new List<Beer>();
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                beers = _beerRepository.SearchBeers(searchString);
+                BeerListViewModel beerListViewModelForSearch = new BeerListViewModel(beers, _categoryRepository.GetAll);
+                return View(beerListViewModelForSearch);
+            }
+
+            return RedirectToAction("List");
+        }
         
     }
 }

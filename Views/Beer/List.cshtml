@@ -1,6 +1,14 @@
 ﻿@model BeerShop.ViewModels.BeerListViewModel
-        
-        
+
+
+
+
+        <form asp-action="SearchBeers" method="get" role="form" >
+            <p>
+                Búsqueda: <input type="text" asp-for="SearchString" />
+                <input type="submit" value="Filter" />
+            </p>
+        </form>
 
         @foreach(var category in Model.Categories){
         <a class="beer-link" asp-controller="Beer" asp-action="SearchForCategory"

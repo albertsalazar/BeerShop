@@ -98,6 +98,10 @@ namespace BeerShop.Models
             return null;
 
         }
+        public IEnumerable<Beer> SearchBeers(string searchQuery)
+        {
+            return _context.Beers.Where(b => b.Name.Contains(searchQuery));
+        }
        
     }
 }

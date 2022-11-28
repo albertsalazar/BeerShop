@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace BeerShop.Models
 {
-    public class BeerShopDbContext : DbContext
+    public class BeerShopDbContext : IdentityDbContext
     {
         public BeerShopDbContext(DbContextOptions<BeerShopDbContext> options) : base(options)
         {
