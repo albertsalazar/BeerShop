@@ -11,7 +11,7 @@
 </h3>
 
 <div class="row gx-5">
-    <img src="~/@imagePath" alt="@Model.Beer.Name" class="img-fluid col-5"/>
+    <img src="~/@imagePath" alt="@Model.Beer.Name" class="img-fluid col-2"/>
     <div class="col-7">
         <h4>@Model.Beer.Description</h4>
         <h3 class="pull-right">@Model.Beer.Price.ToString("c")</h3>
@@ -31,7 +31,7 @@
         @if (SignInManager.IsSignedIn(User))
         {
             <br/>
-            <a asp-controller="Beer" asp-action="DeleteBeer" asp-route-id=@Model.Beer.Id ><button class="btn btn-danger" >Eliminar esta cerveza</button></a>
+           <p><a asp-controller="Beer" asp-action="DeleteBeer" asp-route-id=@Model.Beer.Id ><button class="btn btn-danger" >Eliminar esta cerveza</button></a></p>
             <br />
             <a asp-controller="Beer" asp-action="UpdateBeer" asp-route-id=@Model.Beer.Id><button class="btn btn-light">Actualiza esta cerveza</button></a>
         }else{
