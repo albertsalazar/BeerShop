@@ -1,0 +1,68 @@
+﻿@model BeerShop.ViewModels.CategoryListViewModel
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+            <th scope="col">Beers</th>
+            
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var category in Model.Categories){
+        <tr>
+            <th scope="row">@category.CategoryId</th>
+            <td>@category.Name</td>
+            <td>@category.Description</td>
+            <td><a asp-controller="Category" asp-action="Update" asp-route-id=@category.CategoryId>
+                    <button class="btn btn-light">Update</button></a>
+            </td>
+                <td>
+                    <button class="btn btn-danger" onclick="document.getElementById('@category.CategoryId').style.display='block'">Delete</button>
+
+                    <div id="@category.CategoryId" class="modal">
+                        <span onclick="document.getElementById('@category.CategoryId').style.display='none'" class="close" title="Close Modal">×</span>
+                    
+                            <div class="alert alert-danger" role="alert">
+                                <h1>Delete Category</h1>
+                                <p>Are you sure you want to delete this category? If you delete a category, all associated beers will be deleted.</p>
+
+                                <div class="clearfix">
+                                <button type="button" onclick="document.getElementById('@category.CategoryId').style.display='none'" class="btn btn-light">Cancel</button>
+                                <a asp-controller="Category" asp-action="DeleteCategory" asp-route-id=@category.CategoryId> <button type="button" onclick="document.getElementById('@category.CategoryId').style.display='none'" class="btn btn-danger">Delete</button></a>
+                                </div>
+                            </div>
+                        
+                    </div>
+            </td>
+            <td><a asp-controller="Beer" asp-action="SearchForCategory" asp-route-id=@category.CategoryId>
+
+                        <button data-toggle="modal" data-target="#exampleModal" class="btn btn-outline-success">Beers</button>
+                    
+                 </a>
+            </td>
+            
+        </tr>
+        }
+        
+    </tbody>
+</table>
+<a asp-controller="Category" asp-action="Create"><button class="btn btn-outline-success">Add a new Category</button></a>
+<script>
+    // Get the modal
+    var modal = document.getElementById('id01');
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+
+

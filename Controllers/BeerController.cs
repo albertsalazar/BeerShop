@@ -1,5 +1,6 @@
 ﻿using BeerShop.Models;
 using BeerShop.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BeerShop.Controllers
@@ -38,6 +39,7 @@ namespace BeerShop.Controllers
             BeerListViewModel beerListViewModel = new BeerListViewModel(_beerRepository.GetBeersByCategory(id), _categoryRepository.GetAll);
             return View(beerListViewModel);
         }
+        [Authorize]
         public IActionResult Create()
         {
             Beer beer = new Beer();
@@ -47,6 +49,7 @@ namespace BeerShop.Controllers
             return View(beerCreateViewModel);
 
         }
+        [Authorize]
         [HttpPost]
         public IActionResult Create(Beer beer)
         {
@@ -57,13 +60,14 @@ namespace BeerShop.Controllers
             }
             return View(beer);
         }
-
+        [Authorize]
         public IActionResult DeleteBeer(int Id)
         {
             _beerRepository.DeleteBeer(Id);
             return RedirectToAction("List");
 
         }
+        [Authorize]
         public IActionResult UpdateBeer(int id)
         {
             Beer beer = _context.Beers.FirstOrDefault(b => b.Id == id);
@@ -74,8 +78,8 @@ namespace BeerShop.Controllers
             BeerCreateViewModel beerCreateViewModel = new BeerCreateViewModel(_categoryRepository.GetAll, beer);
             return View(beerCreateViewModel);
         }
-        
-        
+
+        [Authorize]
         public IActionResult UpdateBeerAction(Beer beer)
         {
             if (ModelState.IsValid)
