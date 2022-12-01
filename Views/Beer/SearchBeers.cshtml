@@ -15,31 +15,40 @@
    asp-route-id="@category.CategoryId">@category.Name</a>
 }
 <div class="row rowrow-cols-1 row-cols-md-3 g-4">
-    @foreach (var beer in Model.Beers)
+    @if (Model.Beers.Any())
     {
+        @foreach (var beer in Model.Beers)
+        {
+            <div class="col">
+                <div class="card-body pie-card">
+                    @{
+                        var imagePath = beer.ImageUrl;
 
+                    }
+                    <img src="~/@imagePath" class="card-img-top" alt="@beer.Name" height="270">
+                    <div class="card-body pie-button">
+                        <h4 class="d-grid"></h4>
 
-        <div class="col">
-            <div class="card-body pie-card">
-                @{
-                    var imagePath = beer.ImageUrl;
-
-                }
-                <img src="~/@imagePath" class="card-img-top" alt="@beer.Name" height="270">
-                <div class="card-body pie-button">
-                    <h4 class="d-grid"></h4>
-
-                    <div class="d-flex justify-content-between mt-2">
-                        <h2 class="text-start">
-                            <a class="beer-link" asp-controller="Beer" asp-action="Details"
+                        <div class="d-flex justify-content-between mt-2">
+                            <h2 class="text-start">
+                                <a class="beer-link" asp-controller="Beer" asp-action="Details"
                            asp-route-id="@beer.Id">@beer.Name</a>
-                        </h2>
-                        <h5 class="text-nowrap">
-                            @beer.Price.ToString("c")
-                        </h5>
+                            </h2>
+                            <h5 class="text-nowrap">
+                                @beer.Price.ToString("c")
+                            </h5>
+                        </div>
                     </div>
                 </div>
             </div>
+        }
+
+    }
+    else
+    {
+        <br />
+        <div class="alert alert-secondary" role="alert">
+            Upppps....Looks like we don't have anything matching your search
         </div>
     }
 </div>
